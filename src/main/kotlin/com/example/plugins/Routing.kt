@@ -10,14 +10,18 @@ fun Application.configureRouting() {
 
     routing {
         post("/compare") {
-            val words = call.parameters[KEY_words] ?: return@post
-            val list = words.split('_').map { it.trim() }
-            if (!list.isValidated()) {
-                call.respondText("Invalid input type")
-                return@post
+            try {
+                val words = call.parameters[KEY_words] ?: return@post
+                val list = words.split('_').map { it.trim() }
+                if (!list.isValidated()) {
+                    call.respondText("Invalid input type")
+                    return@post
+                }
+                val result = hasAnagrams(list)
+                call.respondText("$result")
+            } catch (e: Exception) {
+                call.respondText("Something went wrong")
             }
-            val result = hasAnagrams(list)
-            call.respondText("$result")
         }
     }
 }
