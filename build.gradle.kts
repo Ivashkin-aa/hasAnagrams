@@ -19,7 +19,7 @@ application {
 
 ktor {
     fatJar {
-        archiveFileName.set("hasAnagrams.jar")
+        archiveFileName.set("has-anagrams.jar")
     }
 }
 
