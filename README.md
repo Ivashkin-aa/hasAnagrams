@@ -1,4 +1,6 @@
 # hasAnagrams
+[![Testing](https://github.com/Ivashkin-aa/hasAnagrams/actions/workflows/check.yml/badge.svg?branch=master)](https://github.com/Ivashkin-aa/hasAnagrams/actions/workflows/check.yml)
+
 For a given list of words, determine whether it contains anagrams (two words are anagrams if one can be composed from the second)
 
 ## Use case
