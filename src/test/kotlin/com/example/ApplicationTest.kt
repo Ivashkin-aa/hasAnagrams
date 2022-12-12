@@ -14,9 +14,30 @@ class ApplicationTest {
         application {
             configureRouting()
         }
-        client.get("/").apply {
+        client.post("/compare?words=tac_light_cat").apply {
             assertEquals(HttpStatusCode.OK, status)
-            assertEquals("Hello World!", bodyAsText())
+            assertEquals("true", bodyAsText())
+        }
+    }
+
+    @Test
+    fun testError() = testApplication {
+        application {
+            configureRouting()
+        }
+        client.post("/compare").apply {
+            assertEquals(HttpStatusCode.NotFound, status)
+        }
+    }
+
+    @Test
+    fun testInputInvalid() = testApplication {
+        application {
+            configureRouting()
+        }
+        client.post("/compare?words=").apply {
+            assertEquals(HttpStatusCode.OK, status)
+            assertEquals("Invalid input type", bodyAsText())
         }
     }
 }
